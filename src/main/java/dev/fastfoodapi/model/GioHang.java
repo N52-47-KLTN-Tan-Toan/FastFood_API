@@ -13,7 +13,6 @@ import javax.persistence.*;
 public class GioHang {
 
     @Id
-    @Generated
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long maGH;
 

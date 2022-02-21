@@ -6,17 +6,17 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 @MappedSuperclass
-@NoArgsConstructor
-@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public abstract class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    @GeneratedValue
+    @Column(name = "user_id", updatable = false, nullable = false, unique = true, columnDefinition = "BINARY(16)")
+    private UUID userId;
 
     private String name;
 

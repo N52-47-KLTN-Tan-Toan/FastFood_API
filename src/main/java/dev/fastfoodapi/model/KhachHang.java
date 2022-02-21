@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tbl_khachhang")
 public class KhachHang extends User{
 
