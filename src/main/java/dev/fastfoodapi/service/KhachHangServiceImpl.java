@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class KhachHangServiceImpl implements KhachHangService{
@@ -21,7 +22,7 @@ public class KhachHangServiceImpl implements KhachHangService{
     }
 
     @Override
-    public Optional<KhachHang> findById(Long id) {
+    public Optional<KhachHang> findById(UUID id) {
         return khachHangRepo.findById(id);
     }
 
@@ -31,13 +32,13 @@ public class KhachHangServiceImpl implements KhachHangService{
     }
 
     @Override
-    public KhachHang update(Long id, KhachHang obj) {
+    public KhachHang update(UUID id, KhachHang obj) {
         obj.setUserId(id);
         return khachHangRepo.save(obj);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(UUID id) {
         khachHangRepo.deleteById(id);
     }
 }

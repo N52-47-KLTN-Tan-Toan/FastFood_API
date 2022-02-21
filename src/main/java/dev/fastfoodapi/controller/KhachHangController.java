@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/v1/khach-hang")
@@ -22,7 +24,7 @@ public class KhachHangController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<KhachHang> getKhachHangById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<KhachHang> getKhachHangById(@PathVariable(value = "id") UUID id) {
         try {
             KhachHang obj = khachHangService.findById(id).get();
             return ResponseEntity.ok().body(obj);
@@ -37,13 +39,13 @@ public class KhachHangController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<KhachHang> updateKhachHang(@RequestBody KhachHang obj, @PathVariable("id") Long id) {
+    public ResponseEntity<KhachHang> updateKhachHang(@RequestBody KhachHang obj, @PathVariable("id") UUID id) {
         KhachHang o = khachHangService.update(id, obj);
         return ResponseEntity.ok(o);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<KhachHang> deleteKhachHang(@PathVariable("id") Long id) {
+    public ResponseEntity<KhachHang> deleteKhachHang(@PathVariable("id") UUID id) {
         try {
             khachHangService.delete(id);
             return ResponseEntity.ok().build();
