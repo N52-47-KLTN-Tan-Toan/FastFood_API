@@ -1,6 +1,9 @@
 package dev.fastfoodapi.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -16,9 +19,14 @@ public class GioHang {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long maGH;
 
+    private int soLuong;
+
     @ManyToOne
     @JoinColumn(name = "ma_khach_hang")
     private KhachHang khachHang;
 
-    private int soLuong;
+    @ManyToOne
+    @JoinColumn(name = "ma_mh")
+    private MatHang matHang;
+
 }
