@@ -1,7 +1,9 @@
 package dev.fastfoodapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -19,4 +21,7 @@ public class KhachHang extends User{
     @OneToMany(mappedBy = "khachHang")
     private List<GioHang> gioHangList;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "khachHang")
+    private List<DonDatHang> donDatHangList;
 }
