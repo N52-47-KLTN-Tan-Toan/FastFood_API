@@ -27,4 +27,8 @@ public class ChiTietDonDatHang {
     @ManyToOne
     @JoinColumn(name = "ma_gh")
     private GioHang gioHang;
+
+    @ManyToOne
+    @JoinColumn(name = "ma_don_dat_hang")
+    private DonDatHang donDatHang;
 }
