@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -27,8 +28,8 @@ public class KhachHangServiceImpl implements KhachHangService{
     }
 
     @Override
-    public Page<KhachHang> findAll(Pageable pageable) {
-        return khachHangRepo.findAll(pageable);
+    public List<KhachHang> findAll() {
+        return khachHangRepo.findAll();
     }
 
     @Override
