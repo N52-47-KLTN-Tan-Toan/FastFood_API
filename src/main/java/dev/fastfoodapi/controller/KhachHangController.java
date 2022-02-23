@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -19,8 +20,8 @@ public class KhachHangController {
     private KhachHangService khachHangService;
 
     @GetMapping
-    public Page<KhachHang> getAllKhachHang(Pageable pageable) {
-        return khachHangService.findAll(pageable);
+    public List<KhachHang> getAllKhachHang() {
+        return khachHangService.findAll();
     }
 
     @GetMapping("/{id}")

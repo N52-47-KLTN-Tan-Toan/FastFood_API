@@ -4,6 +4,7 @@ import dev.fastfoodapi.model.KhachHang;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ public interface KhachHangService {
 
     Optional<KhachHang> findById(UUID id);
 
-    Page<KhachHang> findAll(Pageable pageable);
+    List<KhachHang> findAll();
 
     KhachHang update(UUID id, KhachHang obj);
 
