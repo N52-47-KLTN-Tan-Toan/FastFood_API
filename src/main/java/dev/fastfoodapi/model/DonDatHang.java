@@ -27,6 +27,8 @@ public class DonDatHang {
 
     private String trangThai;
 
+    private String diaChiGiaoHang;
+
     @JsonIgnore
     @OneToMany(mappedBy = "donDatHang", cascade = CascadeType.ALL)
     private List<ChiTietDonDatHang> chiTietDonDatHangList;
