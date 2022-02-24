@@ -25,8 +25,8 @@ public class ChiTietDonDatHang {
     private int soLuongDat;
 
     @ManyToOne
-    @JoinColumn(name = "ma_gh")
-    private GioHang gioHang;
+    @JoinColumn(name = "ma_mat_hang")
+    private MatHang matHang;
 
     @ManyToOne
     @JoinColumn(name = "ma_don_dat_hang")
