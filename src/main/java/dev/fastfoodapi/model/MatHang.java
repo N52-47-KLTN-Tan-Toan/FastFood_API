@@ -32,8 +32,6 @@ public class MatHang {
 
     private String donViTinh;
 
-    private String trangThai;
-
     @ManyToOne
     @JoinColumn(name = "ma_lmh")
     private LoaiMatHang loaiMatHang;
