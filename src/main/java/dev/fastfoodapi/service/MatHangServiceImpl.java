@@ -14,6 +14,7 @@ public class MatHangServiceImpl implements MatHangService{
     @Autowired
     private MatHangRepo matHangRepo;
 
+    //Hàm CRUD mặc định
     @Override
     public MatHang save(MatHang obj) {
         return matHangRepo.save(obj);
@@ -38,5 +39,11 @@ public class MatHangServiceImpl implements MatHangService{
     @Override
     public void delete(Long id) {
         matHangRepo.deleteById(id);
+    }
+
+    //Một số hàm khác được thêm vào
+    @Override
+    public List<MatHang> findAllByLMH(Long id) {
+        return matHangRepo.findAllByLoaiMatHang(id);
     }
 }
