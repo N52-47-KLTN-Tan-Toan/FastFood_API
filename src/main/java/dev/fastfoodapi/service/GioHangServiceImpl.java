@@ -53,4 +53,9 @@ public class GioHangServiceImpl implements GioHangService{
             return false;
         }
     }
+
+    @Override
+    public List<GioHang> findByKhachHang(UUID userId) {
+        return gioHangRepo.findByKhachHang(userId);
+    }
 }

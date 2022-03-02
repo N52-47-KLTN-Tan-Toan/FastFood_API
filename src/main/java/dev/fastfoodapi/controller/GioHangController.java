@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin("*")
@@ -21,6 +22,7 @@ public class GioHangController {
     @Autowired
     private GioHangRepo gioHangRepo;
 
+    //Hàm CRUD mặc định============================================================================================
     @GetMapping
     public List<GioHang> getAllGioHang() {
         return gioHangService.findAll();
@@ -31,18 +33,18 @@ public class GioHangController {
         try {
             GioHang obj = gioHangService.findById(id).get();
             return ResponseEntity.ok().body(obj);
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping
     public GioHang createGioHang(@RequestBody GioHang obj) {
-        if(gioHangService.findByKhachHangAndMatHang(obj.getKhachHang().getUserId(), obj.getMatHang().getMaMH())){
+        if (gioHangService.findByKhachHangAndMatHang(obj.getKhachHang().getUserId(), obj.getMatHang().getMaMH())) {
             GioHang gh = gioHangRepo.findByKhachHangAndMatHang(obj.getKhachHang().getUserId(), obj.getMatHang().getMaMH());
             gh.builder().soLuong(gh.getSoLuong() + 1).build();
             return gioHangService.save(gh);
-        }else {
+        } else {
             return gioHangService.save(obj);
         }
     }
@@ -63,4 +65,9 @@ public class GioHangController {
         }
     }
 
+    //Một số hàm khác=========================================================================================
+    @GetMapping("/userId={userId}")
+    public List<GioHang> getGioHangByKhachHang(@PathVariable(value = "userId") UUID userId) {
+        return gioHangService.findByKhachHang(userId);
+    }
 }

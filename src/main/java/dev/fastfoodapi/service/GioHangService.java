@@ -21,4 +21,6 @@ public interface GioHangService {
 
     //Một số hàm khác
     boolean findByKhachHangAndMatHang(UUID userId, Long maMH);
+
+    List<GioHang> findByKhachHang(UUID userId);
 }
