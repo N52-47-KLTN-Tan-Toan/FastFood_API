@@ -1,6 +1,7 @@
 package dev.fastfoodapi.model;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -14,8 +15,9 @@ import java.util.UUID;
 public abstract class User implements Serializable {
 
     @Id
-    @GeneratedValue
-    @Column(name = "user_id", updatable = false, nullable = false, unique = true, columnDefinition = "BINARY(16)")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "user_id", columnDefinition = "BINARY(16)")
     private UUID userId;
 
     private String name;

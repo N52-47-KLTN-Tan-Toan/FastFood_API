@@ -1,8 +1,6 @@
 package dev.fastfoodapi.service;
 
 import dev.fastfoodapi.model.KhachHang;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +8,7 @@ import java.util.UUID;
 
 public interface KhachHangService {
 
+    //Hàm CRUD mặc định
     KhachHang save(KhachHang obj);
 
     Optional<KhachHang> findById(UUID id);
@@ -20,4 +19,6 @@ public interface KhachHangService {
 
     void delete(UUID id);
 
+    //Một số hàm khác
+    KhachHang findByUsername(String s);
 }

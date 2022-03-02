@@ -1,6 +1,7 @@
 package dev.fastfoodapi.controller;
 
 import dev.fastfoodapi.model.GioHang;
+import dev.fastfoodapi.repository.GioHangRepo;
 import dev.fastfoodapi.service.GioHangService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin("*")
@@ -17,6 +19,10 @@ public class GioHangController {
     @Autowired
     private GioHangService gioHangService;
 
+    @Autowired
+    private GioHangRepo gioHangRepo;
+
+    //Hàm CRUD mặc định============================================================================================
     @GetMapping
     public List<GioHang> getAllGioHang() {
         return gioHangService.findAll();
@@ -27,14 +33,20 @@ public class GioHangController {
         try {
             GioHang obj = gioHangService.findById(id).get();
             return ResponseEntity.ok().body(obj);
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping
     public GioHang createGioHang(@RequestBody GioHang obj) {
-        return gioHangService.save(obj);
+        if (gioHangService.findByKhachHangAndMatHang(obj.getKhachHang().getUserId(), obj.getMatHang().getMaMH())) {
+            GioHang gh = gioHangRepo.findByKhachHangAndMatHang(obj.getKhachHang().getUserId(), obj.getMatHang().getMaMH());
+            gh.builder().soLuong(gh.getSoLuong() + 1).build();
+            return gioHangService.save(gh);
+        } else {
+            return gioHangService.save(obj);
+        }
     }
 
     @PutMapping("/{id}")
@@ -53,4 +65,9 @@ public class GioHangController {
         }
     }
 
+    //Một số hàm khác=========================================================================================
+    @GetMapping("/userId={userId}")
+    public List<GioHang> getGioHangByKhachHang(@PathVariable(value = "userId") UUID userId) {
+        return gioHangService.findByKhachHang(userId);
+    }
 }

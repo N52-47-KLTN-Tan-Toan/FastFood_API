@@ -17,8 +17,9 @@ public class MatHangController {
     @Autowired
     private MatHangService matHangService;
 
+    //Hàm CRUD mặc định
     @GetMapping
-    public List<MatHang> getAllMatHang(){
+    public List<MatHang> getAllMatHang() {
         return matHangService.findAll();
     }
 
@@ -27,7 +28,7 @@ public class MatHangController {
         try {
             MatHang obj = matHangService.findById(id).get();
             return ResponseEntity.ok().body(obj);
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }
@@ -51,5 +52,16 @@ public class MatHangController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    //Một số hàm khác được thêm vào
+    @GetMapping("/pLoai={id}")
+    public List<MatHang> getAllMatHangByLMH(@PathVariable(value = "id") Long id) {
+        return matHangService.findAllByLMH(id);
+    }
+
+    @GetMapping("/keyword={keyword}")
+    public List<MatHang> search(@PathVariable(value = "keyword") String keyword) {
+        return matHangService.search(keyword);
     }
 }
