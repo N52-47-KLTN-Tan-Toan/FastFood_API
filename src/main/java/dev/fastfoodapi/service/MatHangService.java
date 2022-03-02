@@ -20,4 +20,6 @@ public interface MatHangService {
 
     //Một số hàm khác được thêm vào
     List<MatHang> findAllByLMH(Long id);
+
+    List<MatHang> search(String keyword);
 }

@@ -59,4 +59,9 @@ public class MatHangController {
     public List<MatHang> getAllMatHangByLMH(@PathVariable(value = "id") Long id) {
         return matHangService.findAllByLMH(id);
     }
+
+    @GetMapping("/keyword={keyword}")
+    public List<MatHang> search(@PathVariable(value = "keyword") String keyword) {
+        return matHangService.search(keyword);
+    }
 }

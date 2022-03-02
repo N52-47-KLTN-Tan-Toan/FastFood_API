@@ -46,4 +46,9 @@ public class MatHangServiceImpl implements MatHangService{
     public List<MatHang> findAllByLMH(Long id) {
         return matHangRepo.findAllByLoaiMatHang(id);
     }
+
+    @Override
+    public List<MatHang> search(String keyword) {
+        return matHangRepo.search(keyword);
+    }
 }
