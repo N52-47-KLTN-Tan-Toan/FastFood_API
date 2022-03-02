@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class GioHangServiceImpl implements GioHangService{
@@ -15,8 +16,10 @@ public class GioHangServiceImpl implements GioHangService{
     @Autowired
     private GioHangRepo gioHangRepo;
 
+    //Hàm CRUD mặc định
     @Override
     public GioHang save(GioHang obj) {
+        obj.setSoLuong(obj.getSoLuong() + 1);
         return gioHangRepo.save(obj);
     }
 
@@ -39,5 +42,15 @@ public class GioHangServiceImpl implements GioHangService{
     @Override
     public void delete(Long id) {
         gioHangRepo.deleteById(id);
+    }
+
+    //Một số hàm khác
+    @Override
+    public boolean findByKhachHangAndMatHang(UUID userId, Long maMH) {
+        if(gioHangRepo.findByKhachHangAndMatHang(userId, maMH) != null){
+            return true;
+        }else {
+            return false;
+        }
     }
 }

@@ -1,6 +1,7 @@
 package dev.fastfoodapi.controller;
 
 import dev.fastfoodapi.model.GioHang;
+import dev.fastfoodapi.repository.GioHangRepo;
 import dev.fastfoodapi.service.GioHangService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class GioHangController {
 
     @Autowired
     private GioHangService gioHangService;
+
+    @Autowired
+    private GioHangRepo gioHangRepo;
 
     @GetMapping
     public List<GioHang> getAllGioHang() {
@@ -34,7 +38,13 @@ public class GioHangController {
 
     @PostMapping
     public GioHang createGioHang(@RequestBody GioHang obj) {
-        return gioHangService.save(obj);
+        if(gioHangService.findByKhachHangAndMatHang(obj.getKhachHang().getUserId(), obj.getMatHang().getMaMH())){
+            GioHang gh = gioHangRepo.findByKhachHangAndMatHang(obj.getKhachHang().getUserId(), obj.getMatHang().getMaMH());
+            gh.builder().soLuong(gh.getSoLuong() + 1).build();
+            return gioHangService.save(gh);
+        }else {
+            return gioHangService.save(obj);
+        }
     }
 
     @PutMapping("/{id}")

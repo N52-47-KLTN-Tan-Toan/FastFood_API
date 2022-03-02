@@ -4,9 +4,11 @@ import dev.fastfoodapi.model.GioHang;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface GioHangService {
 
+    //Hàm CRUD mặc định
     GioHang save(GioHang obj);
 
     Optional<GioHang> findById(Long id);
@@ -17,4 +19,6 @@ public interface GioHangService {
 
     void delete(Long id);
 
+    //Một số hàm khác
+    boolean findByKhachHangAndMatHang(UUID userId, Long maMH);
 }
