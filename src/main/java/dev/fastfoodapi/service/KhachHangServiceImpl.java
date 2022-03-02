@@ -17,6 +17,7 @@ public class KhachHangServiceImpl implements KhachHangService{
     @Autowired
     private KhachHangRepo khachHangRepo;
 
+    //Hàm CRUD mặc định
     @Override
     public KhachHang save(KhachHang obj) {
         return khachHangRepo.save(obj);
@@ -41,5 +42,11 @@ public class KhachHangServiceImpl implements KhachHangService{
     @Override
     public void delete(UUID id) {
         khachHangRepo.deleteById(id);
+    }
+
+    //Một số hàm khác
+    @Override
+    public KhachHang findByUsername(String s) {
+        return khachHangRepo.findByUsername(s);
     }
 }

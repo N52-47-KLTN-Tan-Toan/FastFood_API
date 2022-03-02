@@ -19,6 +19,7 @@ public class KhachHangController {
     @Autowired
     private KhachHangService khachHangService;
 
+    //Hàm CRUD mặc định
     @GetMapping
     public List<KhachHang> getAllKhachHang() {
         return khachHangService.findAll();
@@ -55,4 +56,9 @@ public class KhachHangController {
         }
     }
 
+    //Một số hàm khác
+    @GetMapping("/username={username}")
+    public KhachHang getKhachHangByUsername(@PathVariable(value = "username") String s) {
+        return khachHangService.findByUsername(s);
+    }
 }
