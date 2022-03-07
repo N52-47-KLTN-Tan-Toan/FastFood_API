@@ -20,5 +20,5 @@ public interface KhachHangService {
     void delete(UUID id);
 
     //Một số hàm khác
-    KhachHang findByUsername(String s);
+    KhachHang findByPhone(String s);
 }

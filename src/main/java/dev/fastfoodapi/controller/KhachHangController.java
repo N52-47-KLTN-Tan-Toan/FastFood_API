@@ -56,8 +56,8 @@ public class KhachHangController {
     }
 
     //Một số hàm khác
-    @GetMapping("/username={username}")
-    public KhachHang getKhachHangByUsername(@PathVariable(value = "username") String s) {
-        return khachHangService.findByUsername(s);
+    @GetMapping("/phone={phone}")
+    public KhachHang getKhachHangByPhone(@PathVariable(value = "phone") String s) {
+        return khachHangService.findByPhone(s);
     }
 }

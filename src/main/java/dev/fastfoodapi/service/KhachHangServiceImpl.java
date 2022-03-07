@@ -3,8 +3,6 @@ package dev.fastfoodapi.service;
 import dev.fastfoodapi.model.KhachHang;
 import dev.fastfoodapi.repository.KhachHangRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,7 +44,7 @@ public class KhachHangServiceImpl implements KhachHangService{
 
     //Một số hàm khác
     @Override
-    public KhachHang findByUsername(String s) {
-        return khachHangRepo.findByUsername(s);
+    public KhachHang findByPhone(String s) {
+        return khachHangRepo.findByPhone(s);
     }
 }

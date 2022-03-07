@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface KhachHangRepo extends JpaRepository<KhachHang, UUID> {
 
-    @Query("SELECT kh FROM KhachHang kh WHERE kh.username = :s")
-    KhachHang findByUsername(String s);
+    @Query("SELECT kh FROM KhachHang kh WHERE kh.phone = :s")
+    KhachHang findByPhone(String s);
 
 }
