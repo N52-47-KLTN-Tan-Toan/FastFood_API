@@ -30,8 +30,6 @@ public abstract class User implements Serializable {
 
     private String address;
 
-    private String username;
-
     private String password;
 
     private String roleName;
