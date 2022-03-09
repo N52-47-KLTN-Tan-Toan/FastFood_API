@@ -59,6 +59,6 @@ public class DonDatHangController {
     @GetMapping("/userId={id}")
     public List<DonDatHang> getAllByKhachHang(@PathVariable("id") UUID userId) {
         int size = donDatHangService.findAllByKhachHang(userId).size();
-        return donDatHangService.findAllByKhachHang(userId).subList(size - 10, size);
+        return donDatHangService.findAllByKhachHang(userId);
     }
 }
