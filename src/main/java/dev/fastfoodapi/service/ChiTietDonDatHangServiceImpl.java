@@ -14,6 +14,7 @@ public class ChiTietDonDatHangServiceImpl implements ChiTietDonDatHangService{
     @Autowired
     private ChiTietDonDatHangRepo chiTietDonDatHangRepo;
 
+    //Hàm CRUD mặc định ===================================================================================
     @Override
     public ChiTietDonDatHang save(ChiTietDonDatHang obj) {
         return chiTietDonDatHangRepo.save(obj);
@@ -38,5 +39,11 @@ public class ChiTietDonDatHangServiceImpl implements ChiTietDonDatHangService{
     @Override
     public void delete(Long id) {
         chiTietDonDatHangRepo.deleteById(id);
+    }
+
+    //Một số hàm khác ===================================================================================
+    @Override
+    public List<ChiTietDonDatHang> findAllByDonDatHang(Long id) {
+        return chiTietDonDatHangRepo.findAllByDonDatHang(id);
     }
 }

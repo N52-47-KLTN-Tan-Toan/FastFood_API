@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin("*")
@@ -17,6 +18,7 @@ public class DonDatHangController {
     @Autowired
     private DonDatHangService donDatHangService;
 
+    //Hàm CRUD mặc định ===============================================================================================
     @GetMapping
     public List<DonDatHang> getAllDonDatHang() {
         return donDatHangService.findAll();
@@ -53,4 +55,10 @@ public class DonDatHangController {
         }
     }
 
+    //Một số hàm khác ================================================================================================
+    @GetMapping("/userId={id}")
+    public List<DonDatHang> getAllByKhachHang(@PathVariable("id") UUID userId) {
+        int size = donDatHangService.findAllByKhachHang(userId).size();
+        return donDatHangService.findAllByKhachHang(userId).subList(size - 10, size);
+    }
 }

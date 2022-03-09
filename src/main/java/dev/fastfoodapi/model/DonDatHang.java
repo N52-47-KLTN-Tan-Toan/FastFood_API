@@ -29,6 +29,10 @@ public class DonDatHang {
 
     private String diaChiGiaoHang;
 
+    private String hinhThuc;
+
+    private Double tongTien;
+
     @JsonIgnore
     @OneToMany(mappedBy = "donDatHang", cascade = CascadeType.ALL)
     private List<ChiTietDonDatHang> chiTietDonDatHangList;

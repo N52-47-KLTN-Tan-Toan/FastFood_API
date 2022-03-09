@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class DonDatHangServiceImpl implements DonDatHangService{
@@ -14,6 +15,7 @@ public class DonDatHangServiceImpl implements DonDatHangService{
     @Autowired
     private DonDatHangRepo donDatHangRepo;
 
+    //Hàm CRUD mặc định=======================================================================
     @Override
     public DonDatHang save(DonDatHang obj) {
         return donDatHangRepo.save(obj);
@@ -38,5 +40,11 @@ public class DonDatHangServiceImpl implements DonDatHangService{
     @Override
     public void delete(Long id) {
         donDatHangRepo.deleteById(id);
+    }
+
+    //Một số hàm khác============================================================================
+    @Override
+    public List<DonDatHang> findAllByKhachHang(UUID userId) {
+        return donDatHangRepo.findAllByKhachHang(userId);
     }
 }

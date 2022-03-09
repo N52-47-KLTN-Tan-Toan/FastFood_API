@@ -18,6 +18,7 @@ public class ChiTietDonDatHangController {
     @Autowired
     private ChiTietDonDatHangService chiTietDonDatHangService;
 
+    //Hàm CRUD mặc định ======================================================================================
     @GetMapping
     public List<ChiTietDonDatHang> getAllChiTietDonDatHang() {
         return chiTietDonDatHangService.findAll();
@@ -52,5 +53,11 @@ public class ChiTietDonDatHangController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    //Một số hàm khác ======================================================================================
+    @GetMapping("/donDatHang={id}")
+    public List<ChiTietDonDatHang> getAllByDonDatHang(@PathVariable("id") Long id) {
+        return chiTietDonDatHangService.findAllByDonDatHang(id);
     }
 }

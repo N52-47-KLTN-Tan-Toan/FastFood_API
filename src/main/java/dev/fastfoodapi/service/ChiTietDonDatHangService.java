@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface ChiTietDonDatHangService {
 
+    //Hàm CRUD mặc định==========================================
     ChiTietDonDatHang save(ChiTietDonDatHang obj);
 
     Optional<ChiTietDonDatHang> findById(Long id);
@@ -17,4 +18,6 @@ public interface ChiTietDonDatHangService {
 
     void delete(Long id);
 
+    //Một số hàm khác ===============================================
+    List<ChiTietDonDatHang> findAllByDonDatHang(Long id);
 }
