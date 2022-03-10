@@ -31,6 +31,8 @@ public class DonDatHang {
 
     private String hinhThuc;
 
+    private String soDienThoai;
+
     private Double tongTien;
 
     @JsonIgnore
