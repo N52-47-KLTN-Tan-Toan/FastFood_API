@@ -29,7 +29,7 @@ public class DonDatHangController {
         try {
             DonDatHang obj = donDatHangService.findById(id).get();
             return ResponseEntity.ok().body(obj);
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }
@@ -60,5 +60,10 @@ public class DonDatHangController {
     public List<DonDatHang> getAllByKhachHang(@PathVariable("id") UUID userId) {
         int size = donDatHangService.findAllByKhachHang(userId).size();
         return donDatHangService.findAllByKhachHang(userId);
+    }
+
+    @GetMapping("/trangThai")
+    public List<DonDatHang> getAllByTrangThai() {
+        return donDatHangService.findAllByTrangThai();
     }
 }

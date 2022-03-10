@@ -47,4 +47,9 @@ public class DonDatHangServiceImpl implements DonDatHangService{
     public List<DonDatHang> findAllByKhachHang(UUID userId) {
         return donDatHangRepo.findAllByKhachHang(userId);
     }
+
+    @Override
+    public List<DonDatHang> findAllByTrangThai() {
+        return donDatHangRepo.findAllByTrangThai();
+    }
 }
