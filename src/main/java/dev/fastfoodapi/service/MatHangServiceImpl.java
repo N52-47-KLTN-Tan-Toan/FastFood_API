@@ -1,10 +1,16 @@
 package dev.fastfoodapi.service;
 
 import dev.fastfoodapi.model.MatHang;
+import dev.fastfoodapi.model.ResponseMessage;
 import dev.fastfoodapi.repository.MatHangRepo;
+import dev.fastfoodapi.service.helper.ExcelHelperMatHang;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,5 +56,25 @@ public class MatHangServiceImpl implements MatHangService{
     @Override
     public List<MatHang> search(String keyword) {
         return matHangRepo.search(keyword);
+    }
+
+    @Override
+    public ResponseEntity<ResponseMessage> saveAllByFile(MultipartFile file) {
+        String message = "";
+        List<MatHang> listBefore = matHangRepo.findAll();
+        if (ExcelHelperMatHang.hasExcelFormat(file)) {
+            try {
+                List<MatHang> listAfter = ExcelHelperMatHang.excelToTutorials(file.getInputStream());
+                matHangRepo.saveAll(listAfter);
+                message = "Tải lên thành công! Có " + (listAfter.size() - (listAfter.size() - listBefore.size())) + "" +
+                        " dòng được cập nhật và " + (listAfter.size() - listBefore.size()) + " dòng được thêm vào";
+                return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+            } catch (IOException e) {
+                throw new RuntimeException("Lỗi phân tích dữ liệu file excel: " + e.getMessage());
+            }
+        }
+
+        message = "Thất bại! Xin Vui lòng tải lên bằng file excel (.xlsx)";
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
     }
 }

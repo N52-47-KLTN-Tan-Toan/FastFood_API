@@ -1,11 +1,14 @@
 package dev.fastfoodapi.controller;
 
 import dev.fastfoodapi.model.MatHang;
+import dev.fastfoodapi.model.ResponseMessage;
 import dev.fastfoodapi.service.MatHangService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -63,5 +66,10 @@ public class MatHangController {
     @GetMapping("/keyword={keyword}")
     public List<MatHang> search(@PathVariable(value = "keyword") String keyword) {
         return matHangService.search(keyword);
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+        return matHangService.saveAllByFile(file);
     }
 }

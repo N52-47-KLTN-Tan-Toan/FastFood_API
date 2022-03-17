@@ -1,6 +1,9 @@
 package dev.fastfoodapi.service;
 
 import dev.fastfoodapi.model.MatHang;
+import dev.fastfoodapi.model.ResponseMessage;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,4 +25,6 @@ public interface MatHangService {
     List<MatHang> findAllByLMH(Long id);
 
     List<MatHang> search(String keyword);
+
+    ResponseEntity<ResponseMessage> saveAllByFile(MultipartFile file);
 }
