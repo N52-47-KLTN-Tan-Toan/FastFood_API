@@ -24,6 +24,10 @@ public interface MatHangService {
     //Một số hàm khác được thêm vào
     List<MatHang> findAllByLMH(Long id);
 
+    List<MatHang> features();
+
+    List<MatHang> topSeller();
+
     List<MatHang> search(String keyword);
 
     ResponseEntity<ResponseMessage> saveAllByFile(MultipartFile file);

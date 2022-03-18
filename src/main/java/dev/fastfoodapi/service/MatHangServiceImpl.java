@@ -54,6 +54,16 @@ public class MatHangServiceImpl implements MatHangService{
     }
 
     @Override
+    public List<MatHang> features() {
+        return matHangRepo.features();
+    }
+
+    @Override
+    public List<MatHang> topSeller() {
+        return matHangRepo.topSeller();
+    }
+
+    @Override
     public List<MatHang> search(String keyword) {
         return matHangRepo.search(keyword);
     }
