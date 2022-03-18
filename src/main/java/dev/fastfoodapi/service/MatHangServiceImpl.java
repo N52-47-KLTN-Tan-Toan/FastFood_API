@@ -3,7 +3,7 @@ package dev.fastfoodapi.service;
 import dev.fastfoodapi.model.MatHang;
 import dev.fastfoodapi.model.ResponseMessage;
 import dev.fastfoodapi.repository.MatHangRepo;
-import dev.fastfoodapi.service.helper.ExcelHelperMatHang;
+import dev.fastfoodapi.service.helper.ExcelHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,9 +62,9 @@ public class MatHangServiceImpl implements MatHangService{
     public ResponseEntity<ResponseMessage> saveAllByFile(MultipartFile file) {
         String message = "";
         List<MatHang> listBefore = matHangRepo.findAll();
-        if (ExcelHelperMatHang.hasExcelFormat(file)) {
+        if (ExcelHelper.hasExcelFormat(file)) {
             try {
-                List<MatHang> listAfter = ExcelHelperMatHang.excelToTutorials(file.getInputStream());
+                List<MatHang> listAfter = ExcelHelper.excelToProducts(file.getInputStream());
                 matHangRepo.saveAll(listAfter);
                 message = "Tải lên thành công! Có " + (listAfter.size() - (listAfter.size() - listBefore.size())) + "" +
                         " dòng được cập nhật và " + (listAfter.size() - listBefore.size()) + " dòng được thêm vào";

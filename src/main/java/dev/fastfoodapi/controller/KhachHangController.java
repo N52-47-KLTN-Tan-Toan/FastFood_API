@@ -1,11 +1,13 @@
 package dev.fastfoodapi.controller;
 
 import dev.fastfoodapi.model.KhachHang;
+import dev.fastfoodapi.model.ResponseMessage;
 import dev.fastfoodapi.service.KhachHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.UUID;
@@ -59,5 +61,10 @@ public class KhachHangController {
     @GetMapping("/phone={phone}")
     public KhachHang getKhachHangByPhone(@PathVariable(value = "phone") String s) {
         return khachHangService.findByPhone(s);
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+        return khachHangService.saveAllByFile(file);
     }
 }

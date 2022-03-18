@@ -1,10 +1,12 @@
 package dev.fastfoodapi.controller;
 
 import dev.fastfoodapi.model.LoaiMatHang;
+import dev.fastfoodapi.model.ResponseMessage;
 import dev.fastfoodapi.service.LoaiMatHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class LoaiMatHangController {
     @Autowired
     private LoaiMatHangService loaiMatHangService;
 
+    //Hàm CRUD mặc định ==============================================================================================
     @GetMapping
     public List<LoaiMatHang> getAllLoaiMatHang(){
         return loaiMatHangService.findAll();
@@ -50,5 +53,11 @@ public class LoaiMatHangController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    //Một số hàm khác ==============================================================================================
+    @PostMapping("/upload")
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+        return loaiMatHangService.saveAllByFile(file);
     }
 }
