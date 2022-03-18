@@ -1,6 +1,9 @@
 package dev.fastfoodapi.service;
 
 import dev.fastfoodapi.model.KhachHang;
+import dev.fastfoodapi.model.ResponseMessage;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,4 +24,6 @@ public interface KhachHangService {
 
     //Một số hàm khác
     KhachHang findByPhone(String s);
+
+    ResponseEntity<ResponseMessage> saveAllByFile(MultipartFile file);
 }
