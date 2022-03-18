@@ -63,6 +63,16 @@ public class MatHangController {
         return matHangService.findAllByLMH(id);
     }
 
+    @GetMapping("/features")
+    public List<MatHang> getFeatures() {
+        return matHangService.features();
+    }
+
+    @GetMapping("/top-seller")
+    public List<MatHang> getTopSeller() {
+        return matHangService.topSeller();
+    }
+
     @GetMapping("/keyword={keyword}")
     public List<MatHang> search(@PathVariable(value = "keyword") String keyword) {
         return matHangService.search(keyword);
