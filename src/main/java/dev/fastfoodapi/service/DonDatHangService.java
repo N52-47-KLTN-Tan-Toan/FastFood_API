@@ -24,4 +24,9 @@ public interface DonDatHangService {
 
     List<DonDatHang> findAllByTrangThai();
 
+    List<DonDatHang> ngayTheoThang();
+
+    List<DonDatHang> thangTrongNam();
+
+    List<DonDatHang> bayNgayGanDay();
 }

@@ -66,4 +66,19 @@ public class DonDatHangController {
     public List<DonDatHang> getAllByTrangThai() {
         return donDatHangService.findAllByTrangThai();
     }
+
+    @GetMapping("/ngayTheoThang")
+    public List<DonDatHang> getNgayTheoThang() {
+        return donDatHangService.ngayTheoThang();
+    }
+
+    @GetMapping("/thangTrongNam")
+    public List<DonDatHang> getThangTrongNam() {
+        return donDatHangService.thangTrongNam();
+    }
+
+    @GetMapping("/bayNgayGanDay")
+    public List<DonDatHang> getBayNgayGanDay() {
+        return donDatHangService.bayNgayGanDay();
+    }
 }

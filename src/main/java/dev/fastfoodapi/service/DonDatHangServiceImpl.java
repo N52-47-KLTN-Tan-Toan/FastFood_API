@@ -52,4 +52,19 @@ public class DonDatHangServiceImpl implements DonDatHangService{
     public List<DonDatHang> findAllByTrangThai() {
         return donDatHangRepo.findAllByTrangThai();
     }
+
+    @Override
+    public List<DonDatHang> ngayTheoThang() {
+        return donDatHangRepo.ngayTheoThang();
+    }
+
+    @Override
+    public List<DonDatHang> thangTrongNam() {
+        return donDatHangRepo.thangTrongNam();
+    }
+
+    @Override
+    public List<DonDatHang> bayNgayGanDay() {
+        return donDatHangRepo.bayNgayGanDay();
+    }
 }

@@ -14,4 +14,25 @@ public interface DonDatHangRepo extends JpaRepository<DonDatHang, Long> {
 
     @Query("SELECT ddh FROM DonDatHang ddh WHERE ddh.trangThai = 'Chờ xác nhận' OR ddh.trangThai = 'Đang giao'")
     List<DonDatHang> findAllByTrangThai();
+
+    @Query(value = "SELECT maddh, SUM(tong_tien) AS tong_tien, ngay_dat_hang, dia_chi_giao_hang, trang_thai, ma_khach_hang, hinh_thuc\n" +
+            "FROM db_fastfood.tbl_dondathang\n" +
+            "WHERE MONTH(ngay_dat_hang) = MONTH(NOW())\n" +
+            "GROUP BY DAY(ngay_dat_hang)\n" +
+            "ORDER BY DAY(ngay_dat_hang) ASC", nativeQuery = true)
+    List<DonDatHang> ngayTheoThang();
+
+    @Query(value = "SELECT maddh, SUM(tong_tien) AS tong_tien, ngay_dat_hang, dia_chi_giao_hang, trang_thai, ma_khach_hang, hinh_thuc\n" +
+            "FROM db_fastfood.tbl_dondathang\n" +
+            "WHERE YEAR(ngay_dat_hang) = YEAR(NOW())\n" +
+            "GROUP BY MONTH(ngay_dat_hang)\n" +
+            "ORDER BY MONTH(ngay_dat_hang) ASC", nativeQuery = true)
+    List<DonDatHang> thangTrongNam();
+
+    @Query(value = "SELECT maddh, SUM(tong_tien) AS tong_tien, ngay_dat_hang, dia_chi_giao_hang, trang_thai, ma_khach_hang, hinh_thuc\n" +
+            "FROM db_fastfood.tbl_dondathang\n" +
+            "WHERE MONTH(ngay_dat_hang) = MONTH(NOW()) AND ngay_dat_hang >= DATE_SUB(NOW(), INTERVAL 7 DAY)\n" +
+            "GROUP BY DAY(ngay_dat_hang)\n" +
+            "ORDER BY DAY(ngay_dat_hang) ASC", nativeQuery = true)
+    List<DonDatHang> bayNgayGanDay();
 }
