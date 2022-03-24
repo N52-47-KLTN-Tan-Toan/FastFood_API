@@ -60,4 +60,24 @@ public class ChiTietDonDatHangController {
     public List<ChiTietDonDatHang> getAllByDonDatHang(@PathVariable("id") Long id) {
         return chiTietDonDatHangService.findAllByDonDatHang(id);
     }
+
+    @GetMapping("/today")
+    public List<ChiTietDonDatHang> today() {
+        return chiTietDonDatHangService.today();
+    }
+
+    @GetMapping("/last7days")
+    public List<ChiTietDonDatHang> last7days() {
+        return chiTietDonDatHangService.last7days();
+    }
+
+    @GetMapping("/thisMonth")
+    public List<ChiTietDonDatHang> thisMonth() {
+        return chiTietDonDatHangService.thisMonth();
+    }
+
+    @GetMapping("/thisYear")
+    public List<ChiTietDonDatHang> thisYear() {
+        return chiTietDonDatHangService.thisYear();
+    }
 }

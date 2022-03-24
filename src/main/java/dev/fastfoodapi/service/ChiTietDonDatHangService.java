@@ -20,4 +20,12 @@ public interface ChiTietDonDatHangService {
 
     //Một số hàm khác ===============================================
     List<ChiTietDonDatHang> findAllByDonDatHang(Long id);
+
+    List<ChiTietDonDatHang> today();
+
+    List<ChiTietDonDatHang> last7days();
+
+    List<ChiTietDonDatHang> thisMonth();
+
+    List<ChiTietDonDatHang> thisYear();
 }
