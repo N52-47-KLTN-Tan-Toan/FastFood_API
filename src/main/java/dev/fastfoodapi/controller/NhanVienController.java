@@ -64,4 +64,9 @@ public class NhanVienController {
     public String getRoleNameByUsername(@PathVariable(value = "username") String s) {
         return nhanVienService.findRoleNameByUsername(s);
     }
+
+    @PostMapping("/checkExistsByUsername")
+    public boolean existsByUsername(@RequestParam String u){
+        return nhanVienService.existsByUsername(u);
+    }
 }

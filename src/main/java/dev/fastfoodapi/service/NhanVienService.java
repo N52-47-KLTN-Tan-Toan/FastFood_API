@@ -24,4 +24,5 @@ public interface NhanVienService {
 
     String findRoleNameByUsername(String s);
 
+    boolean existsByUsername(String s);
 }
