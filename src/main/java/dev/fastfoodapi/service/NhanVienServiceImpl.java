@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class NhanVienServiceImpl implements NhanVienService{
+public class NhanVienServiceImpl implements NhanVienService {
 
     @Autowired
     private NhanVienRepo nhanVienRepo;
@@ -51,6 +51,15 @@ public class NhanVienServiceImpl implements NhanVienService{
     @Override
     public String findRoleNameByUsername(String s) {
         return nhanVienRepo.findRoleNameByUsername(s);
+    }
+
+    @Override
+    public boolean existsByUsername(String s) {
+        if (nhanVienRepo.findByUsername(s) == null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
