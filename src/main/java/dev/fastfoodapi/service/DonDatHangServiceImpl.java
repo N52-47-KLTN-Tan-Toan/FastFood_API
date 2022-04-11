@@ -49,8 +49,8 @@ public class DonDatHangServiceImpl implements DonDatHangService{
     }
 
     @Override
-    public List<DonDatHang> findAllByTrangThai() {
-        return donDatHangRepo.findAllByTrangThai();
+    public List<DonDatHang> findAllByTrangThai(String trangThai) {
+        return donDatHangRepo.findAllByTrangThai(trangThai);
     }
 
     @Override

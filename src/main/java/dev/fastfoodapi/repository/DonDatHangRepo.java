@@ -12,8 +12,8 @@ public interface DonDatHangRepo extends JpaRepository<DonDatHang, Long> {
     @Query("SELECT ddh FROM DonDatHang ddh WHERE ddh.khachHang.userId = :userId")
     List<DonDatHang> findAllByKhachHang(UUID userId);
 
-    @Query("SELECT ddh FROM DonDatHang ddh WHERE ddh.trangThai = 'Chờ xác nhận' OR ddh.trangThai = 'Đang giao'")
-    List<DonDatHang> findAllByTrangThai();
+    @Query("SELECT ddh FROM DonDatHang ddh WHERE ddh.trangThai = :trangThai")
+    List<DonDatHang> findAllByTrangThai(String trangThai);
 
     @Query(value = "SELECT maddh, SUM(tong_tien) AS tong_tien, ngay_dat_hang, dia_chi_giao_hang, trang_thai, ma_khach_hang, hinh_thuc\n" +
             "FROM db_fastfood.tbl_dondathang\n" +

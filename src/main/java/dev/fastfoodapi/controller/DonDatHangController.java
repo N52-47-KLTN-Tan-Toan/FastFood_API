@@ -63,8 +63,8 @@ public class DonDatHangController {
     }
 
     @GetMapping("/trangThai")
-    public List<DonDatHang> getAllByTrangThai() {
-        return donDatHangService.findAllByTrangThai();
+    public List<DonDatHang> getAllByTrangThai(@RequestParam String status) {
+        return donDatHangService.findAllByTrangThai(status);
     }
 
     @GetMapping("/ngayTheoThang")
