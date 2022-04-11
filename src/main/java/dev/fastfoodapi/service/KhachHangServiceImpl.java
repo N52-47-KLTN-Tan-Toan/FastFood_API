@@ -55,6 +55,15 @@ public class KhachHangServiceImpl implements KhachHangService {
     }
 
     @Override
+    public boolean existsByPhone(String s) {
+        if (khachHangRepo.findByPhone(s) == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public ResponseEntity<ResponseMessage> saveAllByFile(MultipartFile file) {
         String message = "";
         List<KhachHang> listBefore = khachHangRepo.findAll();

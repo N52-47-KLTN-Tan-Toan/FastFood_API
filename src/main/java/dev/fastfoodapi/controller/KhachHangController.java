@@ -63,6 +63,11 @@ public class KhachHangController {
         return khachHangService.findByPhone(s);
     }
 
+    @PostMapping("/checkExistsByPhone")
+    public boolean existsByUsername(@RequestParam String p){
+        return khachHangService.existsByPhone(p);
+    }
+
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         return khachHangService.saveAllByFile(file);
