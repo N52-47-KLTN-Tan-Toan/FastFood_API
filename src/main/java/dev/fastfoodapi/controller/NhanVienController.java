@@ -1,10 +1,12 @@
 package dev.fastfoodapi.controller;
 
 import dev.fastfoodapi.model.NhanVien;
+import dev.fastfoodapi.model.ResponseMessage;
 import dev.fastfoodapi.service.NhanVienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.UUID;
@@ -68,5 +70,10 @@ public class NhanVienController {
     @PostMapping("/checkExistsByUsername")
     public boolean existsByUsername(@RequestParam String u){
         return nhanVienService.existsByUsername(u);
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+        return nhanVienService.saveAllByFile(file);
     }
 }

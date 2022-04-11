@@ -1,9 +1,6 @@
 package dev.fastfoodapi.service.helper;
 
-import dev.fastfoodapi.model.GioiThieu;
-import dev.fastfoodapi.model.KhachHang;
-import dev.fastfoodapi.model.LoaiMatHang;
-import dev.fastfoodapi.model.MatHang;
+import dev.fastfoodapi.model.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -28,6 +25,7 @@ public class ExcelHelper {
     static String SHEET2 = "LoaiMatHang";
     static String SHEET3 = "GioiThieu";
     static String SHEET4 = "KhachHang";
+    static String SHEET5 = "NhanVien";
 
     public static boolean hasExcelFormat(MultipartFile file) {
 
@@ -282,6 +280,99 @@ public class ExcelHelper {
 
                         case 3:
                             obj.setDiemTichLuy((int) currentCell.getNumericCellValue());
+                            break;
+
+                        case 4:
+                            obj.setAddress(currentCell.getStringCellValue());
+                            break;
+
+                        case 5:
+                            boolean gender = false;
+                            if ("Nam".equals(currentCell.getStringCellValue())) {
+                                gender = true;
+                            } else if ("Nữ".equals(currentCell.getStringCellValue())) {
+                                gender = false;
+                            }
+                            obj.setGender(gender);
+                            break;
+
+                        case 6:
+                            obj.setEmail(currentCell.getStringCellValue());
+                            break;
+
+                        case 7:
+                            obj.setBirthDate(currentCell.getLocalDateTimeCellValue().toLocalDate());
+                            break;
+
+                        case 8:
+                            obj.setPhone(currentCell.getStringCellValue());
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    cellIdx++;
+                }
+
+                list.add(obj);
+            }
+
+            workbook.close();
+
+            return list;
+        } catch (IOException e) {
+            throw new RuntimeException("Lỗi phân tích file Excel: " + e.getMessage());
+        }
+    }
+
+    //Import bảng nhân viên
+    public static List<NhanVien> excelToStaff(InputStream is) {
+        try {
+            Workbook workbook = new XSSFWorkbook(is);
+
+            Sheet sheet = workbook.getSheet(SHEET5);
+            Iterator<Row> rows = sheet.iterator();
+
+            List<NhanVien> list = new ArrayList<>();
+
+            int rowNumber = 0;
+            while (rows.hasNext()) {
+                Row currentRow = rows.next();
+
+                // skip header
+                if (rowNumber == 0 || rowNumber == 1) {
+                    rowNumber++;
+                    continue;
+                }
+
+                Iterator<Cell> cellsInRow = currentRow.iterator();
+
+                NhanVien obj = new NhanVien();
+
+                int cellIdx = 0;
+                while (cellsInRow.hasNext()) {
+                    Cell currentCell = cellsInRow.next();
+
+                    switch (cellIdx) {
+                        case 0:
+                            try {
+                                obj.setUserId(UUID.fromString(currentCell.getStringCellValue()));
+                            } catch (Exception e) {
+                                obj.setUserId(UUID.randomUUID());
+                            }
+                            break;
+
+                        case 1:
+                            obj.setAvatar(currentCell.getStringCellValue());
+                            break;
+
+                        case 2:
+                            obj.setName(currentCell.getStringCellValue());
+                            break;
+
+                        case 3:
+                            obj.setRoleName(currentCell.getStringCellValue());
                             break;
 
                         case 4:

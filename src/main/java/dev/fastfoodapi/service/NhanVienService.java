@@ -1,6 +1,9 @@
 package dev.fastfoodapi.service;
 
 import dev.fastfoodapi.model.NhanVien;
+import dev.fastfoodapi.model.ResponseMessage;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,4 +28,6 @@ public interface NhanVienService {
     String findRoleNameByUsername(String s);
 
     boolean existsByUsername(String s);
+
+    ResponseEntity<ResponseMessage> saveAllByFile(MultipartFile file);
 }

@@ -22,7 +22,7 @@ public interface DonDatHangService {
     //Một số hàm khác
     List<DonDatHang> findAllByKhachHang(UUID userId);
 
-    List<DonDatHang> findAllByTrangThai();
+    List<DonDatHang> findAllByTrangThai(String trangThai);
 
     List<DonDatHang> ngayTheoThang();
 
