@@ -47,23 +47,4 @@ public class ChiTietDonDatHangServiceImpl implements ChiTietDonDatHangService{
         return chiTietDonDatHangRepo.findAllByDonDatHang(id);
     }
 
-    @Override
-    public List<ChiTietDonDatHang> today() {
-        return chiTietDonDatHangRepo.today();
-    }
-
-    @Override
-    public List<ChiTietDonDatHang> last7days() {
-        return chiTietDonDatHangRepo.last7days();
-    }
-
-    @Override
-    public List<ChiTietDonDatHang> thisMonth() {
-        return chiTietDonDatHangRepo.thisMonth();
-    }
-
-    @Override
-    public List<ChiTietDonDatHang> thisYear() {
-        return chiTietDonDatHangRepo.thisYear();
-    }
 }

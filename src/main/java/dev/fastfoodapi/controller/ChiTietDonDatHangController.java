@@ -1,6 +1,5 @@
 package dev.fastfoodapi.controller;
 
-
 import dev.fastfoodapi.model.ChiTietDonDatHang;
 import dev.fastfoodapi.service.ChiTietDonDatHangService;
 
@@ -61,23 +60,4 @@ public class ChiTietDonDatHangController {
         return chiTietDonDatHangService.findAllByDonDatHang(id);
     }
 
-    @GetMapping("/today")
-    public List<ChiTietDonDatHang> today() {
-        return chiTietDonDatHangService.today();
-    }
-
-    @GetMapping("/last7days")
-    public List<ChiTietDonDatHang> last7days() {
-        return chiTietDonDatHangService.last7days();
-    }
-
-    @GetMapping("/thisMonth")
-    public List<ChiTietDonDatHang> thisMonth() {
-        return chiTietDonDatHangService.thisMonth();
-    }
-
-    @GetMapping("/thisYear")
-    public List<ChiTietDonDatHang> thisYear() {
-        return chiTietDonDatHangService.thisYear();
-    }
 }
