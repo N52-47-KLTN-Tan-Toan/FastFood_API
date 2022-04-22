@@ -3,9 +3,7 @@ package dev.fastfoodapi.controller;
 import dev.fastfoodapi.model.MatHang;
 import dev.fastfoodapi.model.ResponseMessage;
 import dev.fastfoodapi.service.MatHangService;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -71,6 +69,26 @@ public class MatHangController {
     @GetMapping("/top-seller")
     public List<MatHang> getTopSeller() {
         return matHangService.topSeller();
+    }
+
+    @GetMapping("/today")
+    public List<MatHang> today(){
+        return matHangService.today();
+    }
+
+    @GetMapping("/last7days")
+    public List<MatHang> last7days() {
+        return matHangService.last7days();
+    }
+
+    @GetMapping("/thisMonth")
+    public List<MatHang> thisMonth() {
+        return matHangService.thisMonth();
+    }
+
+    @GetMapping("/thisYear")
+    public List<MatHang> thisYear() {
+        return matHangService.thisYear();
     }
 
     @GetMapping("/keyword={keyword}")

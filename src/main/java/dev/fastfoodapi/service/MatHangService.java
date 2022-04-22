@@ -28,6 +28,14 @@ public interface MatHangService {
 
     List<MatHang> topSeller();
 
+    List<MatHang> today();
+
+    List<MatHang> last7days();
+
+    List<MatHang> thisMonth();
+
+    List<MatHang> thisYear();
+
     List<MatHang> search(String keyword);
 
     ResponseEntity<ResponseMessage> saveAllByFile(MultipartFile file);

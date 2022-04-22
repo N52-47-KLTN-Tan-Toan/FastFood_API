@@ -64,6 +64,26 @@ public class MatHangServiceImpl implements MatHangService{
     }
 
     @Override
+    public List<MatHang> today() {
+        return matHangRepo.today();
+    }
+
+    @Override
+    public List<MatHang> last7days() {
+        return matHangRepo.last7days();
+    }
+
+    @Override
+    public List<MatHang> thisMonth() {
+        return matHangRepo.thisMonth();
+    }
+
+    @Override
+    public List<MatHang> thisYear() {
+        return matHangRepo.thisYear();
+    }
+
+    @Override
     public List<MatHang> search(String keyword) {
         return matHangRepo.search(keyword);
     }
