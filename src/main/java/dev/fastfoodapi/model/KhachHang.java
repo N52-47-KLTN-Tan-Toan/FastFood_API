@@ -27,4 +27,8 @@ public class KhachHang extends User{
     @JsonIgnore
     @OneToMany(mappedBy = "khachHang")
     private List<DonDatHang> donDatHangList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "khachHang", cascade = CascadeType.ALL)
+    private List<PhieuGiamGia> phieuGiamGiaList;
 }
