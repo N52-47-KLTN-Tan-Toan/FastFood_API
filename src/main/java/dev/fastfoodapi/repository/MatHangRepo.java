@@ -14,7 +14,7 @@ public interface MatHangRepo extends JpaRepository<MatHang, Long> {
     @Query("SELECT mh FROM MatHang mh WHERE mh.tenMH LIKE %?1%")
     List<MatHang> search(String keyword);
 
-    @Query("SELECT mh FROM MatHang mh WHERE mh.moTa LIKE '%phô%'")
+    @Query("SELECT mh FROM MatHang mh WHERE mh.moTa LIKE '%phô mai%'")
     List<MatHang> features();
 
     @Query(value = "SELECT mh.mamh, SUM(so_luong_dat) AS so_luong_dat, mh.don_gia, mh.don_vi_tinh, mh.ma_lmh, mh.mo_ta, mh.tenmh, mh.hinh_anh \n" +
