@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'ffapi'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8FD8BC69E2CA4FC18EF8529D27860B27 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A3D32977EE4C430AA6BA78A68F09D76C }}
           package: '*.jar'
