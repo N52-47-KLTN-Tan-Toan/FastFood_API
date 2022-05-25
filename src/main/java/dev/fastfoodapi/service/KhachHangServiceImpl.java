@@ -55,6 +55,11 @@ public class KhachHangServiceImpl implements KhachHangService {
     }
 
     @Override
+    public KhachHang findByEmail(String email) {
+        return khachHangRepo.findByEmail(email);
+    }
+
+    @Override
     public boolean existsByPhone(String s) {
         if (khachHangRepo.findByPhone(s) == null) {
             return true;

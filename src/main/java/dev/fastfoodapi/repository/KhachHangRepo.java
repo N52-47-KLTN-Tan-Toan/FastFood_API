@@ -11,4 +11,6 @@ public interface KhachHangRepo extends JpaRepository<KhachHang, UUID> {
     @Query("SELECT kh FROM KhachHang kh WHERE kh.phone = :s")
     KhachHang findByPhone(String s);
 
+    @Query("SELECT kh FROM KhachHang kh WHERE kh.email = :email")
+    KhachHang findByEmail(String email);
 }

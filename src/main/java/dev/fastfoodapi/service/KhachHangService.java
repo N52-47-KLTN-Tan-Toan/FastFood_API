@@ -25,6 +25,8 @@ public interface KhachHangService {
     //Một số hàm khác
     KhachHang findByPhone(String s);
 
+    KhachHang findByEmail(String email);
+
     boolean existsByPhone(String s);
 
     ResponseEntity<ResponseMessage> saveAllByFile(MultipartFile file);

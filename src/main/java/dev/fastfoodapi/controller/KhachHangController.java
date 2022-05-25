@@ -22,12 +22,12 @@ public class KhachHangController {
 
     //Hàm CRUD mặc định
     @GetMapping
-    public List<KhachHang> getAllKhachHang() {
+    public List<KhachHang> getAllCustomers() {
         return khachHangService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<KhachHang> getKhachHangById(@PathVariable(value = "id") UUID id) {
+    public ResponseEntity<KhachHang> getCustomerById(@PathVariable(value = "id") UUID id) {
         try {
             KhachHang obj = khachHangService.findById(id).get();
             return ResponseEntity.ok().body(obj);
@@ -37,18 +37,18 @@ public class KhachHangController {
     }
 
     @PostMapping
-    public KhachHang createKhachHang(@RequestBody KhachHang obj) {
+    public KhachHang createCustomer(@RequestBody KhachHang obj) {
         return khachHangService.save(obj);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<KhachHang> updateKhachHang(@RequestBody KhachHang obj, @PathVariable("id") UUID id) {
+    public ResponseEntity<KhachHang> updateCustomer(@RequestBody KhachHang obj, @PathVariable("id") UUID id) {
         KhachHang o = khachHangService.update(id, obj);
         return ResponseEntity.ok(o);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<KhachHang> deleteKhachHang(@PathVariable("id") UUID id) {
+    public ResponseEntity<KhachHang> deleteCustomer(@PathVariable("id") UUID id) {
         try {
             khachHangService.delete(id);
             return ResponseEntity.ok().build();
@@ -59,8 +59,13 @@ public class KhachHangController {
 
     //Một số hàm khác
     @GetMapping("/phone={phone}")
-    public KhachHang getKhachHangByPhone(@PathVariable(value = "phone") String s) {
+    public KhachHang getCustomerByPhone(@PathVariable(value = "phone") String s) {
         return khachHangService.findByPhone(s);
+    }
+
+    @GetMapping("/email={email}")
+    public KhachHang getCustomerByEmail(@PathVariable(value = "email") String email) {
+        return khachHangService.findByEmail(email);
     }
 
     @PostMapping("/checkExistsByPhone")
